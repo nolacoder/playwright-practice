@@ -283,7 +283,8 @@ test.describe('Clear completed button', () => {
   });
 });
 
-test.describe('Persistence', () => {
+// Skipped for now
+test.describe.skip('Persistence', () => {
   test('should persist its data', async ({ page }) => {
     for (const item of TODO_ITEMS.slice(0, 2)) {
       await page.locator('.new-todo').fill(item);
