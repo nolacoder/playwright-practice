@@ -1,3 +1,5 @@
+// This suite hits https://demo.playwright.dev/todomvc, Playwright's demo app
+
 // @ts-check
 const { test, expect } = require('@playwright/test');
 

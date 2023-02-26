@@ -1,3 +1,5 @@
+// This suite hits https://www.azurestaticwebapps.dev/
+
 // @ts-check
 const { test, expect } = require('@playwright/test');
 

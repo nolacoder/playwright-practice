@@ -1,3 +1,5 @@
+// This suite hits https://playwright.dev/
+
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
