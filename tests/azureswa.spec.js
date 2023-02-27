@@ -13,40 +13,32 @@ test("basic test", async ({ page }) => {
 });
 
 test.describe("navbar tests", () => {
-  test('the "#ThisMonthInSWA" navbar link goes to the "thismonth" page', async ({
-    page,
-  }) => {
-    await page.getByText("#ThisMonthInSWA").click();
+  test('the "#ThisMonthInSWA" navbar link goes to the "thismonth" page', async ({ page }) => {
+    await page.getByRole("link", { name: "#ThisMonthInSWA" }).filter().click();
     await expect(page).toHaveURL(/.*thismonth/);
   });
 
-  test('the "#30DaysOfSWA" navbar link goes to the "blog" page', async ({
-    page,
-  }) => {
-    await page.getByText("#30DaysOfSWA").click();
+  test('the "#30DaysOfSWA" navbar link goes to the "blog" page', async ({ page }) => {
+    await page.locator(".navbar__link", { hasText: "#30DaysOfSWA" }).click(); // using a locator because the home nav logo has #30DaysofSWA in it, causing multiple elements to be found by the getByRole method.
     await expect(page).toHaveURL(/.*blog/);
   });
 
-  test('the "Roundup" navbar link goes to the "roundup" page', async ({
-    page,
-  }) => {
-    await page.getByText("Roundup").click();
+  test('the "Roundup" navbar link goes to the "roundup" page', async ({ page }) => {
+    await page.getByRole("link", { name: "Roundup" }).click();
     await expect(page).toHaveURL(/.*roundup/);
   });
 
-  test('the "Roadmap" navbar link goes to the "roadmap" page', async ({
-    page,
-  }) => {
-    await page.getByText("Roadmap").click();
+  test('the "Roadmap" navbar link goes to the "roadmap" page', async ({ page }) => {
+    await page.getByRole("link", { name: "Roadmap" }).click();
     await expect(page).toHaveURL(/.*roadmap/);
   });
 
   test('the "Docs" navbar link is present', async ({ page }) => {
-    await expect(page.getByText("Docs")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Docs" })).toBeVisible();
   });
 
   test('the "Deploy" navbar link is present', async ({ page }) => {
-    await expect(page.getByText("Deploy")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Deploy" })).toBeVisible();
   });
 
   test("the Github navbar link is present", async ({ page }) => {
@@ -55,9 +47,7 @@ test.describe("navbar tests", () => {
     ).toBeVisible();
   });
 
-  test("use navbar dark mode toggle to go to and from dark mode", async ({
-    page,
-  }) => {
+  test("use navbar dark mode toggle to go to and from dark mode", async ({ page }) => {
     const toggleBtn = page.getByRole("button", { name: /.*dark and light/ });
     const lightIcon = page.locator(".lightToggleIcon_v35p");
     const darkIcon = page.locator(".darkToggleIcon_nQuB");
